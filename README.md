@@ -3,6 +3,7 @@
 ## Prequisites
 
  - Java 1.8
+ - Maven
 
 ## Building and running
 
@@ -11,7 +12,15 @@
 ```bash
 mvn clean install spring-boot:run
 ```
-
+ - Execute the following from Intellij:
+ ```- Open an existing Maven project #
+  - From the main menu, select File | Open.
+  - In the dialog that opens, select the pom.xml file of the project you want to open. Click OK.
+  - In the dialog that opens, click Open as Project.
+  - IntelliJ IDEA opens and syncs the Maven project in the IDE.
+  - Once the project is open navigate to [insert path here] /Application.java and run the main method.
+  - Once the application is running, you can hit the apis given below.
+```
 ## API
  - After running the application, all api's start from the path:
  ```http://localhost:8080/api```
