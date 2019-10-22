@@ -7,12 +7,12 @@
 
 ## Building and running
 
- - Execute the following from command line
+ Option 1)Execute the following from command line
  
 ```bash
 mvn clean install spring-boot:run
 ```
- - Execute the following from Intellij:
+ Option 2)Execute the following from Intellij:
  ```- Open an existing Maven project #
   - From the main menu, select File | Open.
   - In the dialog that opens, select the pom.xml file of the project you want to open. Click OK.
