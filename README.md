@@ -9,7 +9,7 @@
  - Execute the following from command line
  
 ```bash
-mvnw clean install spring-boot:run
+mvn clean install spring-boot:run
 ```
 
 ## API
