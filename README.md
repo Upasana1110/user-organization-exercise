@@ -18,7 +18,7 @@ mvn clean install spring-boot:run
   - In the dialog that opens, select the pom.xml file of the project you want to open. Click OK.
   - In the dialog that opens, click Open as Project.
   - IntelliJ IDEA opens and syncs the Maven project in the IDE.
-  - Once the project is open navigate to [insert path here] /Application.java and run the main method.
+  - Once the project is open navigate to src/main/java/com/organization/api/exercise/Application.java and run the main method.
   - Once the application is running, you can hit the apis given below.
 ```
 ## API
