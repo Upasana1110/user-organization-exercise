@@ -3,7 +3,7 @@ package com.organization.api.exercise.service;
 import com.organization.api.exercise.model.Organization;
 
 import java.lang.reflect.Array;
-import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.Date;
 import java.util.List;
 import java.util.Optional;
@@ -17,7 +17,7 @@ public interface IOrganizationService {
 
     String deleteUserFromOrganization(String userId, String name);
 
-    ArrayList<String> getUsersInOrganization(String name);
+    HashSet<String> getUsersInOrganization(String name);
 
-    ArrayList<Organization> getOrganizations(ArrayList<String> names);
+    HashSet<Organization> getOrganizations(HashSet<String> names);
 }

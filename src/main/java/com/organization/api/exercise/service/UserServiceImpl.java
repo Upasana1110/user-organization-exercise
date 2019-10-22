@@ -6,11 +6,12 @@ import org.springframework.stereotype.Service;
 import javax.annotation.PostConstruct;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.HashSet;
 
 @Service("userService")
 public class UserServiceImpl implements IUserService{
     HashMap<String, User> userMap = new HashMap<>();
-    HashMap<String, ArrayList<String>> userOrganizationMap = new HashMap<>();
+    HashMap<String, HashSet<String>> userOrganizationMap = new HashMap<>();
 
     @PostConstruct
     private void init() {
@@ -38,11 +39,11 @@ public class UserServiceImpl implements IUserService{
     public void addOrganizationToUser(String userId, String name) {
         if(userMap.containsKey(userId)){
             if(!userOrganizationMap.containsKey(userId)){
-                ArrayList<String> orgList = new ArrayList<>();
+                HashSet<String> orgList = new HashSet<>();
                 orgList.add(name);
                 userOrganizationMap.put(userId, orgList);
             }else{
-                ArrayList<String> orgsForUser = userOrganizationMap.get(userId);
+                HashSet<String> orgsForUser = userOrganizationMap.get(userId);
                 orgsForUser.add(name);
                 userOrganizationMap.put(userId, orgsForUser);
             }
@@ -53,7 +54,7 @@ public class UserServiceImpl implements IUserService{
     public void deleteOrganizationFromUser(String userId, String name) {
         if(userMap.containsKey(userId)){
             if(userOrganizationMap.containsKey(userId)){
-                ArrayList<String> orgsForUser = userOrganizationMap.get(userId);
+                HashSet<String> orgsForUser = userOrganizationMap.get(userId);
                 orgsForUser.remove(name);
                 userOrganizationMap.put(userId, orgsForUser);
             }
@@ -61,8 +62,8 @@ public class UserServiceImpl implements IUserService{
     }
 
     @Override
-    public ArrayList<User> getUsers(ArrayList<String> userIds) {
-        ArrayList<User> result = new ArrayList<>();
+    public HashSet<User> getUsers(HashSet<String> userIds) {
+        HashSet<User> result = new HashSet<>();
 
         for(String userId : userIds){
             User oneUser = userMap.get(userId);
@@ -73,7 +74,7 @@ public class UserServiceImpl implements IUserService{
     }
 
     @Override
-    public ArrayList<String> getOrganizationsForUser(String userId){
+    public HashSet<String> getOrganizationsForUser(String userId){
         return userOrganizationMap.get(userId);
     }
 }

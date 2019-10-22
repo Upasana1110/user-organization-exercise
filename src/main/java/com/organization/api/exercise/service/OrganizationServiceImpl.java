@@ -17,7 +17,7 @@ import java.util.*;
 public class OrganizationServiceImpl implements IOrganizationService {
 
     HashMap<String, Organization> organizationMap = new HashMap<>();
-    HashMap<String, ArrayList<String>> organizationUserMap = new HashMap<>();
+    HashMap<String, HashSet<String>> organizationUserMap = new HashMap<>();
     @PostConstruct
     private void init() {
         // This is executed at the start of the service.
@@ -44,11 +44,11 @@ public class OrganizationServiceImpl implements IOrganizationService {
     public String addUserToOrganization(String userId, String name) {
         if(organizationMap.containsKey(name)){
             if(!organizationUserMap.containsKey(name)){
-                ArrayList<String> usersInOrg = new ArrayList<>();
+                HashSet<String> usersInOrg = new HashSet<>();
                 usersInOrg.add(userId);
                 organizationUserMap.put(name, usersInOrg);
             }else{
-                ArrayList<String> usersInOrg = organizationUserMap.get(name);
+                HashSet<String> usersInOrg = organizationUserMap.get(name);
                 usersInOrg.add(userId);
                 organizationUserMap.put(name, usersInOrg);
             }
@@ -63,7 +63,7 @@ public class OrganizationServiceImpl implements IOrganizationService {
     public String deleteUserFromOrganization(String userId, String name) {
         if(organizationMap.containsKey(name)){
             if(organizationUserMap.containsKey(name)){
-                ArrayList<String> usersForOrg = organizationUserMap.get(name);
+                HashSet<String> usersForOrg = organizationUserMap.get(name);
                 usersForOrg.remove(userId);
                 organizationUserMap.put(name, usersForOrg);
             }
@@ -72,8 +72,8 @@ public class OrganizationServiceImpl implements IOrganizationService {
     }
 
     @Override
-    public ArrayList<Organization> getOrganizations(ArrayList<String> names){
-        ArrayList<Organization> result = new ArrayList<>();
+    public HashSet<Organization> getOrganizations(HashSet<String> names){
+        HashSet<Organization> result = new HashSet<>();
 
         for(String name : names){
             Organization oneOrganization = organizationMap.get(name);
@@ -84,7 +84,7 @@ public class OrganizationServiceImpl implements IOrganizationService {
     }
 
     @Override
-    public ArrayList<String> getUsersInOrganization(String name){
+    public HashSet<String> getUsersInOrganization(String name){
         return organizationUserMap.get(name);
     }
 

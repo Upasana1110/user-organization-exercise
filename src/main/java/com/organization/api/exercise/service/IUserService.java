@@ -4,6 +4,7 @@ import com.organization.api.exercise.model.User;
 
 import java.lang.reflect.Array;
 import java.util.ArrayList;
+import java.util.HashSet;
 
 public interface IUserService {
 
@@ -15,7 +16,7 @@ public interface IUserService {
 
     void deleteOrganizationFromUser(String userId, String name);
 
-     ArrayList<User> getUsers(ArrayList<String> userIds);
+    HashSet<User> getUsers(HashSet<String> userIds);
 
-     ArrayList<String> getOrganizationsForUser(String userId);
+    HashSet<String> getOrganizationsForUser(String userId);
 }

@@ -12,10 +12,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.lang.reflect.Array;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 
 @RestController
 @RequestMapping(path = "/api")
@@ -79,28 +76,28 @@ public class MainController {
     }
 
     @RequestMapping(value = "/get/user/organization", method = RequestMethod.GET)
-    public ArrayList<User> getUsersInOrganization(@RequestParam String name){
+    public HashSet<User> getUsersInOrganization(@RequestParam String name){
 
         // Check if organization is valid.
         if(!organizationService.checkIfOrganizationExists(name)){
-            return new ArrayList<>();
+            return new HashSet<>();
         }
 
 
-        ArrayList<String> users = organizationService.getUsersInOrganization(name);
+        HashSet<String> users = organizationService.getUsersInOrganization(name);
 
         return userService.getUsers(users);
     }
 
     @RequestMapping(value = "/get/organization/user", method = RequestMethod.GET)
-    public ArrayList<Organization> getOrganizationsForUser(@RequestParam String userId){
+    public HashSet<Organization> getOrganizationsForUser(@RequestParam String userId){
 
         // Check if user is valid.
         if(!userService.checkIfUserExists(userId)){
-            return new ArrayList<>();
+            return new HashSet<>();
         }
 
-        ArrayList<String> organizations = userService.getOrganizationsForUser(userId);
+        HashSet<String> organizations = userService.getOrganizationsForUser(userId);
 
         return organizationService.getOrganizations(organizations);
     }
